@@ -1,0 +1,18 @@
+{% load static %}
+   <!DOCTYPE html>
+   <html>
+   <head>
+     <title>{% block title %}{% endblock %}</title>
+     <link href="{% static "css/blog.css" %}" rel="stylesheet">
+   </head>
+   <body>
+     <div id="content">
+       {% block content %}
+       {% endblock %}
+     </div>
+     <div id="sidebar">
+       <h2>Mon blog Django</h2>
+       <p>A propos de mon voyage pour apprendre Python avec le framework Django.</p>
+     </div>
+   </body>
+   </html>
