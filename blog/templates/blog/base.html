@@ -1,18 +1,31 @@
 {% load static %}
+{% load blog_tags %}
    <!DOCTYPE html>
    <html>
-   <head>
-     <title>{% block title %}{% endblock %}</title>
-     <link href="{% static "css/blog.css" %}" rel="stylesheet">
-   </head>
-   <body>
-     <div id="content">
-       {% block content %}
-       {% endblock %}
-     </div>
-     <div id="sidebar">
-       <h2>Mon blog Django</h2>
-       <p>A propos de mon voyage pour apprendre Python avec le framework Django.</p>
-     </div>
-   </body>
+    <head>
+      <title>{% block title %}{% endblock %}</title>
+      <link href="{% static "css/blog.css" %}" rel="stylesheet">
+    </head>
+    <body>
+      <div id="content">
+        {% block content %}
+        {% endblock %}
+      </div>
+      <div id="sidebar">
+        <h2>Mon blog Django</h2>
+        <p>Mon voyage pour apprendre Python avec le framework Django contient {% total_posts %} posts.</p>
+        <h3>Derniers posts</h3>
+        {% show_latest_posts 2 %}
+        <h3>Posts les plus commentés</h3>
+        {% get_most_commented_posts as most_commented_posts %}
+        <ul>
+          {% for post in most_commented_posts %}
+            <li>
+              <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+        
+      </div>
+    </body>
    </html>
