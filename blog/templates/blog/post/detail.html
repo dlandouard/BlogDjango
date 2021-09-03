@@ -1,7 +1,8 @@
 {% extends "blog/base.html" %}
 {% load blog_tags %}
-   {% block title %}{{ post.title }}{% endblock %}
-   {% block content %}
+{% block title %}{{ post.title }}{% endblock %}
+{% block content %}
+     <a href="{% url 'blog:post_list' %}">Retour à la liste</a>
      <h1>{{ post.title }}</h1>
      <p class="date">
        Publié le {{ post.publish }} par {{ post.author }}
