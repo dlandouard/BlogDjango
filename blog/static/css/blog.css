@@ -1,5 +1,5 @@
 body { 
-    margin:0;
+    margin: 0;
     padding:0;
     font-family:helvetica, sans-serif;  
 }
@@ -21,6 +21,7 @@ h2 {
 }
 
 #content { 
+    margin: 10px auto;
     float:left;
     width:60%;
     padding:0 0 0 30px; 
