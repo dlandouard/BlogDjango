@@ -1,6 +1,6 @@
 from django import template
 from django.db.models import Count
-from ..models import Post, Comment
+from ..models import Post
 
 register = template.Library() 
 
@@ -15,9 +15,7 @@ def show_latest_posts(count=5):
 
 @register.simple_tag
 def get_most_commented_posts(count=2):
-    post_with_active_comment= Comment.objects.all().select_related('post')
-    print(post_with_active_comment)
-    commented_post=Post.objects.annotate(
+    commented_post=Post.publishedComments.annotate(
             total_comments=Count('comments')
         ).order_by('-total_comments')[:count]
     return commented_post

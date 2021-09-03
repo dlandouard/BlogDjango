@@ -11,6 +11,12 @@ class PublishedManager(models.Manager):
             self).get_queryset()\
         .filter(status='published')
 
+class PublishedCommentsManager(models.Manager):
+    def get_queryset(self):
+        return super(PublishedCommentsManager,
+            self).get_queryset()\
+        .filter(comments__active=True, status='published')
+
 class Post(models.Model):
     STATUS_CHOICES = (
         ('draft', 'Draft'),
@@ -38,6 +44,7 @@ class Post(models.Model):
 
     objects = models.Manager()
     published = PublishedManager()
+    publishedComments=PublishedCommentsManager()
 
     def get_absolute_url(self):
         return reverse('blog:post_detail',
@@ -63,4 +70,3 @@ class Comment(models.Model):
 
     def __str__(self):
         return f'Comment by {self.name} on {self.post}'
-
