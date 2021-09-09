@@ -14,6 +14,9 @@
       <div id="sidebar">
         <h2>Mon blog Django</h2>
         <p>Mon voyage pour apprendre Python avec le framework Django contient {% total_posts %} posts.</p>
+        <p>
+          <a href="{% url "blog:post_feed" %}">Souscrivez à ce blog</a>
+        </p>
         <h3>Derniers posts</h3>
         {% show_latest_posts 2 %}
         <h3>Posts les plus commentés</h3>
@@ -25,7 +28,6 @@
             </li>
           {% endfor %}
         </ul>
-        
       </div>
     </body>
    </html>
